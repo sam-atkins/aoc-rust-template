@@ -1,0 +1,15 @@
+[template]
+exclude = ["templates/**/*"]
+
+[hooks]
+pre = ["pre-script.rhai"]
+
+[placeholders.year]
+type = "string"
+prompt = "What year of Advent of Code are you doing?"
+
+[placeholders.browser]
+type = "string"
+prompt = "What browser do you use? (this is to get a cookie for downloads)"
+choices = ["brave", "chrome", "firefox"]
+default = "brave"

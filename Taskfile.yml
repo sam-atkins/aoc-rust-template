@@ -1,0 +1,102 @@
+version: "3"
+
+dotenv: [".env.local"]
+
+tasks:
+  create:
+    desc: "Scaffold and download relevant info for the challenge for a specified day"
+    summary: |
+      Scaffold and download relevant info for the challenge for a specified day.
+
+      Usage examples:
+      - task create -- {day}
+      - task create -- 1
+
+    cmds:
+      - cargo run --quiet --release -- create {{.CLI_ARGS}}
+
+  scaffold:
+    desc: "Scaffold the challenge for a specified day."
+    summary: |
+      Scaffold the challenge for a specified day.
+
+      Usage examples:
+      - task scaffold -- {day}
+      - task scaffold -- 3
+
+    cmds:
+      - cargo run --quiet --release -- scaffold {{.CLI_ARGS}}
+
+  download:
+    desc: "Download the challenge for a specified day. Note, you need to scaffold first!"
+    summary: |
+      Download the challenge for a specified day. Note, you need to scaffold first!
+
+      Usage examples:
+      - task download -- {day}
+      - task download -- 3
+
+    cmds:
+      - cargo run --quiet --release -- download {{.CLI_ARGS}}
+
+  run:
+    desc: "Run the puzzle code for a specified day"
+    summary: |
+      Run the code for a specified day.
+      Note, day has to be padded with a leading zero if single digit e.g. 01, 02
+
+      Usage examples:
+      - task run -- {day + p1 or p2}
+      - task run -- 01p1
+
+    cmds:
+      - cargo run --quiet --release -- run {{.CLI_ARGS}}
+
+  test:
+    desc: "Run tests for a given day"
+    summary: |
+      Run tests for a given day.
+
+      Note, day has to be padded with a leading zero if single digit e.g. 01, 02
+
+      Usage examples:
+      - task test -- {day + p1 or p2}
+      - task test -- 01p1
+
+    cmds:
+      - cargo run --quiet --release -- tests {{.CLI_ARGS}}
+
+  test:watch:
+    desc: "Run tests for a given day in watch mode"
+    summary: |
+      Run tests for a given day, using cargo watch
+      https://github.com/watchexec/cargo-watch
+
+      Note, day has to be padded with a leading zero if single digit e.g. 01
+
+      Usage examples:
+      - task test:watch -- {day + p1 or p2}
+      - task test:watch -- 01p1
+
+    cmds:
+      - cargo watch -x 'test --bin day_{{.CLI_ARGS}}'
+
+  test:all:
+    desc: "Run all tests"
+    cmds:
+      - cargo test
+
+  benchmark:
+    desc: "Benchmark a particular day using hyperfine"
+    summary: |
+      Benchmark a particular day using hyperfine
+      https://github.com/sharkdp/hyperfine
+
+      Note, the day has to be padded with a leading zero if single digit e.g. 01
+
+      Usage examples:
+      - task benchmark -- {day + p1 or p2}
+      - task benchmark -- 01p1
+
+    cmds:
+      - hyperfine --warmup 5 'task run -- {{.CLI_ARGS}}'
