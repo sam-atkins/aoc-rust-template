@@ -318,7 +318,6 @@ fn is_day_in_range(day: u8) -> bool {
 #[cfg(test)]
 mod unit_tests {
     use super::*;
-    use crate::reader;
 
     #[test]
     fn test_is_day_in_range() {
@@ -330,23 +329,23 @@ mod unit_tests {
 
     #[test]
     fn test_parse_html_for_title() {
-        let html = reader::file_to_string("tests/fixtures/input/page.html");
-        let result = parse_html_for_title(html).unwrap();
+        let html = include_str!("../tests/fixtures/input/page.html");
+        let result = parse_html_for_title(html.to_string()).unwrap();
         assert_eq!(result, "# Day 6 - Advent of Code 2023");
     }
 
     #[test]
     fn test_parse_html_for_puzzle() {
-        let html = reader::file_to_string("tests/fixtures/input/short_article.html");
-        let result = parse_html_for_puzzle(html).unwrap();
+        let html = include_str!("../tests/fixtures/input/short_article.html");
+        let result = parse_html_for_puzzle(html.to_string()).unwrap();
         let expected = "\n            --- Day 6: Wait For It ---\n            The ferry quickly brings you across Island Island.\n        ";
         assert_eq!(result, expected);
     }
 
     #[test]
     fn test_parse_html_for_examples() {
-        let html = reader::file_to_string("tests/fixtures/input/page.html");
-        let result = parse_html_for_examples(html).unwrap();
+        let html = include_str!("../tests/fixtures/input/page.html");
+        let result = parse_html_for_examples(html.to_string()).unwrap();
         let expected = "Time:      7  15   30\n    Distance:  9  40  200\n    ";
         assert_eq!(result, expected);
     }

@@ -3,7 +3,7 @@ fn main() {
     println!("Example: {:?}", process(&example_input));
 
     // let input = include_str!("../../data/day_{{ day }}/INPUT.txt");
-    // println!("Input {:?}", process(&input));
+    // println!("Input: {:?}", process(&input));
 }
 
 fn process(input: &str) -> Option<u32> {

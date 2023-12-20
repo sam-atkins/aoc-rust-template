@@ -1,5 +1,4 @@
 mod operations;
-pub mod reader;
 
 extern crate clap;
 use clap::{Parser, Subcommand};
