@@ -51,7 +51,7 @@ pub fn scaffold(day: u8) -> OpResult<()> {
         }
     };
     let mut context = Context::new();
-    context.insert("day", &day);
+    context.insert("day", &day_padded);
     let module_paths = vec![
         format!("src/bin/{}p1.rs", day_padded),
         format!("src/bin/{}p2.rs", day_padded),
